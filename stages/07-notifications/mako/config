@@ -1,0 +1,26 @@
+# mako reads ~/.config/mako/config   (all options: man 5 mako)
+# Test it:     notify-send "Lug Nuts" "Linux Ricing 101 starts now"
+# Reload it:   makoctl reload
+# Colours: Catppuccin Mocha, #RRGGBBAA.
+
+font=JetBrainsMono Nerd Font 11
+background-color=#1e1e2ee6
+text-color=#cdd6f4
+border-color=#cba6f7
+progress-color=over #313244
+
+width=360
+padding=14
+margin=14
+border-size=2
+border-radius=12
+default-timeout=5000
+
+# Sections like [urgency=critical] override the settings above for matching
+# notifications. Urgency is low, normal or critical (notify-send -u critical ...).
+[urgency=low]
+border-color=#6c7086
+
+[urgency=critical]
+border-color=#fab387
+default-timeout=0

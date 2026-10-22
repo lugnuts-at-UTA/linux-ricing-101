@@ -1,0 +1,59 @@
+// waybar reads ~/.config/waybar/config.jsonc   (docs: man waybar, man waybar-<module>)
+// Icons come from the Nerd Font set in style.css.
+{
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+
+  // Margins + rounded boxes in style.css make the bar "float" like the windows.
+  "margin-top": 10,
+  "margin-left": 14,
+  "margin-right": 14,
+  "spacing": 8,
+
+  "modules-left": ["custom/logo", "hyprland/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["pulseaudio", "network", "battery", "tray"],
+
+  "custom/logo": {
+    "format": "",
+    "tooltip": false
+  },
+
+  "hyprland/workspaces": {
+    "format": "{id}",
+    // Always show 1-5, even when they're empty.
+    "persistent-workspaces": { "*": 5 }
+  },
+
+  "clock": {
+    "format": "󰅐  {:%a %d %b  %H:%M}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 muted",
+    "format-icons": { "default": ["󰕿", "󰖀", "󰕾"] },
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+  },
+
+  "network": {
+    // Which interface to watch. "wl*" = Wi-Fi. Find yours with: ip -br link
+    // (without this, waybar may pick a VPN/docker interface and just show its name)
+    "interface": "wl*",
+    "format-wifi": "󰖩 {essid}",
+    "format-ethernet": "󰈀 wired",
+    "format-disconnected": "󰖪 offline",
+    "tooltip-format": "{ifname}: {ipaddr}"
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-icons": ["󰁺", "󰁼", "󰁾", "󰂀", "󰁹"],
+    "states": { "warning": 25, "critical": 10 }
+  },
+
+  "tray": { "spacing": 8 }
+}
